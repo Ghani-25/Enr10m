@@ -19,22 +19,16 @@ def predict():
     #return render_template('index.html', prediction_text='Enriched prospects $ {}'.format(output))
     return render_template('index.html', prediction_text=output)
 
-
-@app.route('/results', methods=['POST'])
+@app.route('/results',methods=['POST'])
 def results():
-    if request.method == 'GET':
-        return jsonify({"error": "Please send a JSON object with the 'occupations' key in the request body"}), 400
 
-    try:
-        data = request.get_json(force=True)
-        occupation = data.get("occupations")
-        count = data.get("count")
-        print(occupation)
-        output = enrichir(occupation, count)
+    data = request.get_json(force=True)
+    occupation = data.get("occupations")
+    count = data.get("count")
+    print(occupation)
+    output = enrichir(occupation, count)
 
-        return jsonify(output)
-    except ValueError as e:
-        return jsonify({"error": "Invalid JSON object", "message": str(e)}), 400
+    return jsonify(output)
 
 
 if __name__ == "__main__":
