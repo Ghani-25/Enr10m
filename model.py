@@ -2,8 +2,8 @@ import pinecone
 from sentence_transformers import SentenceTransformer, util
 
 model = SentenceTransformer("Ghani-25/LF_enrich_sim", device='cpu')
-pinecone.init(api_key='564016db-e934-4d4d-b2ed-1d5fbc1bf8b7', environment='northamerica-northeast1-gcp')
-index = pinecone.Index('ai-prospects-finder')
+pinecone.init(api_key='55f76c4b-d5e7-43f8-9ea4-60209aad21b4', environment='northamerica-northeast1-gcp')
+index = pinecone.Index('ai-find')
 
 def enrichir(query, count):
     xq = model.encode(query).tolist()
